@@ -63,8 +63,8 @@ export default function Home() {
         </main>
         
         {/* Footer */}
-        <footer className="p-4 sm:p-6" style={{ backgroundColor: 'var(--color-dark-green)' }}>
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-0 text-xs sm:text-sm" style={{ color: 'var(--color-mint)' }}>
+        <footer className="p-8 sm:p-12" style={{ backgroundColor: 'var(--color-dark-green)' }}>
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0 text-sm sm:text-base" style={{ color: 'var(--color-mint)' }}>
             <p>©2025 Vantir. All Rights Reserved.</p>
             <p>info@vantir.se</p>
           </div>
