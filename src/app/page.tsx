@@ -21,6 +21,7 @@ export default function Home() {
         }}
         onLoadedData={() => console.log('Video data loaded')}
       >
+        <source src="/vantir webm.webm" type="video/webm" />
         <source src="/vantir-norrsken.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
