@@ -59,7 +59,7 @@ export default function Home() {
               High stakes.<br className="sm:hidden" /> Higher standards.
             </h1>
           <p className="text-white text-base sm:text-lg md:text-xl max-w-sm sm:max-w-md md:max-w-lg leading-relaxed">
-          Action-driven consulting for critical missions.
+          Action-biased consulting for critical missions.
           </p>
         </main>
         
