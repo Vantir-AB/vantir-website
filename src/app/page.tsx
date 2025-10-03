@@ -12,6 +12,7 @@ export default function Home() {
         loop
         playsInline
         preload="metadata"
+        poster="/vantir-poster.jpg"
         className="absolute inset-0 z-0 w-full h-full object-cover"
         onLoadStart={() => console.log('Video loading started')}
         onCanPlay={() => console.log('Video can play')}
