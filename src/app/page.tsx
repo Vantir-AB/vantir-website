@@ -5,9 +5,29 @@ import Image from "next/image";
 export default function Home() {
   return (
     <div className="min-h-screen relative overflow-hidden">
+      {/* Video Background */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        className="absolute inset-0 z-0 w-full h-full object-cover"
+        onLoadStart={() => console.log('Video loading started')}
+        onCanPlay={() => console.log('Video can play')}
+        onError={(e) => {
+          console.log('Video failed to load:', e);
+          e.currentTarget.style.display = 'none';
+        }}
+        onLoadedData={() => console.log('Video data loaded')}
+      >
+        <source src="/vantir-norrsken.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      
       {/* Fallback gradient background */}
       <div 
-        className="absolute inset-0"
+        className="absolute inset-0 -z-10"
         style={{
           background: 'linear-gradient(135deg, #064e3b 0%, #0f766e 50%, #047857 100%)'
         }}

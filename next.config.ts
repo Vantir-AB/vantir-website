@@ -1,9 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  experimental: {
-    outputFileTracingRoot: undefined,
-  },
+  // Empty config to avoid lockfile warnings
 };
 
 export default nextConfig;
