@@ -56,10 +56,10 @@ export default function Home() {
         {/* Main Content Area */}
         <main className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 text-center">
           <h1 className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6 tracking-tight">
-          Consulting. Redefined.
+          High stakes. Higher standards.
           </h1>
           <p className="text-white text-base sm:text-lg md:text-xl max-w-sm sm:max-w-md md:max-w-lg leading-relaxed">
-            We're building this out. Check back shortly for updates.
+          Action-driven consulting for critical missions.
           </p>
         </main>
         
