@@ -9,8 +9,8 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Vantir - Coming Soon",
-  description: "We're building this out—check back shortly for updates.",
+  title: "Vantir",
+  description: "Consultancy - Reimagined.",
 };
 
 export default function RootLayout({
