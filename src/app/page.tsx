@@ -1,17 +1,42 @@
 "use client";
 
 import Image from "next/image";
+import { useState, useRef, useEffect } from "react";
 
 export default function Home() {
+  const [showPlayButton, setShowPlayButton] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handlePlay = () => {
+    if (videoRef.current) {
+      videoRef.current.play();
+      setShowPlayButton(false);
+    }
+  };
+
+  useEffect(() => {
+    // Try to play video after a short delay
+    const timer = setTimeout(() => {
+      if (videoRef.current && videoRef.current.paused) {
+        videoRef.current.play().catch(() => {
+          setShowPlayButton(true);
+        });
+      }
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="min-h-screen relative overflow-hidden">
       {/* Video Background */}
       <video
+        ref={videoRef}
         autoPlay
         muted
         loop
         playsInline
-        preload="metadata"
+        preload="auto"
         poster="/vantir-poster.jpg"
         className="absolute inset-0 z-0 w-full h-full object-cover"
         onLoadStart={() => console.log('Video loading started')}
@@ -21,6 +46,8 @@ export default function Home() {
           e.currentTarget.style.display = 'none';
         }}
         onLoadedData={() => console.log('Video data loaded')}
+        onPlay={() => setShowPlayButton(false)}
+        onPause={() => setShowPlayButton(true)}
       >
         <source src="/vantir webm.webm" type="video/webm" />
         <source src="/vantir-norrsken.mp4" type="video/mp4" />
@@ -35,6 +62,23 @@ export default function Home() {
         }}
       ></div>
       
+      {/* Play Button Overlay */}
+      {showPlayButton && (
+        <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/20">
+          <button
+            onClick={handlePlay}
+            className="bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-6 transition-all duration-200"
+          >
+            <svg
+              className="w-12 h-12 text-white"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </button>
+        </div>
+      )}
       
       {/* Main Content */}
       <div className="relative z-20 min-h-screen flex flex-col">
@@ -60,7 +104,7 @@ export default function Home() {
               High stakes.<br className="sm:hidden" /> Higher standards.
             </h1>
           <p className="text-white text-base sm:text-lg md:text-xl max-w-sm sm:max-w-md md:max-w-lg leading-relaxed mb-8">
-            Action-biased consulting for critical missions.
+            Action-biased consulting and venture building for critical missions.
           </p>
           
           {/* Coming Soon Indicator */}
