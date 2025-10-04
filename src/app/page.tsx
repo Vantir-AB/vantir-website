@@ -59,9 +59,19 @@ export default function Home() {
             <h1 className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6 tracking-tight">
               High stakes.<br className="sm:hidden" /> Higher standards.
             </h1>
-          <p className="text-white text-base sm:text-lg md:text-xl max-w-sm sm:max-w-md md:max-w-lg leading-relaxed">
-          Action-biased consulting for critical missions.
+          <p className="text-white text-base sm:text-lg md:text-xl max-w-sm sm:max-w-md md:max-w-lg leading-relaxed mb-8">
+            Action-biased consulting for critical missions.
           </p>
+          
+          {/* Coming Soon Indicator */}
+          <div className="flex items-center space-x-3 text-white/70 text-sm">
+            <div className="flex space-x-1">
+              <div className="w-2 h-2 bg-white/40 rounded-full animate-pulse"></div>
+              <div className="w-2 h-2 bg-white/40 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+              <div className="w-2 h-2 bg-white/40 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+            </div>
+            <span className="text-xs tracking-wide uppercase">More details soon</span>
+          </div>
         </main>
         
         {/* Footer */}
