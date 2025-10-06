@@ -11,11 +11,11 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   title: "Vantir",
   description:
-    "Consultancy - Reimagined. Vantir specializes in action-driven consulting and venture building for critical missions, leveraging data, AI, and cloud technologies.",
+    "Consultancy - Reimagined. Vantir specializes in action-biased consulting and venture building for critical missions, leveraging data, AI, and cloud technologies.",
   keywords: [
     "Vantir",
     "consulting",
-    "action-driven consulting",
+    "action-biased consulting",
     "venture building",
     "critical missions",
     "data",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Vantir",
     description:
-      "Consultancy - Reimagined. Vantir specializes in action-driven consulting and venture building for critical missions, leveraging data, AI, and cloud technologies.",
+      "Consultancy - Reimagined. Vantir specializes in action-biased consulting and venture building for critical missions, leveraging data, AI, and cloud technologies.",
     type: "website",
     siteName: "Vantir",
     images: [
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Vantir",
     description:
-      "Consultancy - Reimagined. Vantir specializes in action-driven consulting and venture building for critical missions, leveraging data, AI, and cloud technologies.",
+      "Consultancy - Reimagined. Vantir specializes in action-biased consulting and venture building for critical missions, leveraging data, AI, and cloud technologies.",
     images: ["/vantir-poster.jpg"],
   },
   robots: {
