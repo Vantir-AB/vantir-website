@@ -4,28 +4,38 @@ import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 
 export default function Home() {
-  const [showPlayButton, setShowPlayButton] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [showPoster, setShowPoster] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handlePlay = () => {
     if (videoRef.current) {
       videoRef.current.play();
-      setShowPlayButton(false);
     }
   };
 
   useEffect(() => {
+    // Detect mobile devices (iOS/Android) to disable custom play overlay
+    const userAgent =
+      typeof navigator !== "undefined" ? navigator.userAgent : "";
+    const isIOS = /iPad|iPhone|iPod/.test(userAgent);
+    const isAndroid = /Android/.test(userAgent);
+    const smallViewport =
+      typeof window !== "undefined" &&
+      window.matchMedia("(max-width: 768px)").matches;
+    setIsMobile(isIOS || isAndroid || smallViewport);
+
     // Try to play video after a short delay
     const timer = setTimeout(() => {
       if (videoRef.current && videoRef.current.paused) {
         videoRef.current.play().catch(() => {
-          setShowPlayButton(true);
+          // Intentionally no overlay fallback
         });
       }
     }, 100);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [isMobile]);
 
   return (
     <div className="min-h-screen relative overflow-hidden">
@@ -39,47 +49,45 @@ export default function Home() {
         preload="auto"
         poster="/vantir-poster.jpg"
         className="absolute inset-0 z-0 w-full h-full object-cover"
-        onLoadStart={() => console.log('Video loading started')}
-        onCanPlay={() => console.log('Video can play')}
-        onError={(e) => {
-          console.log('Video failed to load:', e);
-          e.currentTarget.style.display = 'none';
+        onLoadStart={() => {}}
+        onCanPlay={() => {
+          setShowPoster(false);
         }}
-        onLoadedData={() => console.log('Video data loaded')}
-        onPlay={() => setShowPlayButton(false)}
-        onPause={() => setShowPlayButton(true)}
+        onError={(e) => {
+          e.currentTarget.style.display = "none";
+        }}
+        onLoadedData={() => {
+          setShowPoster(false);
+        }}
+        onPlay={() => {
+          setShowPoster(false);
+        }}
       >
         <source src="/vantir webm.webm" type="video/webm" />
         <source src="/vantir-norrsken.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-      
+      {/* Poster overlay while video is loading or unavailable */}
+      {showPoster && (
+        <img
+          src="/vantir-poster.jpg"
+          alt="Vantir background poster"
+          className="absolute inset-0 z-10 w-full h-full object-cover pointer-events-none select-none"
+          draggable={false}
+        />
+      )}
+
       {/* Fallback gradient background */}
-      <div 
+      <div
         className="absolute inset-0 -z-10"
         style={{
-          background: 'linear-gradient(135deg, #064e3b 0%, #0f766e 50%, #047857 100%)'
+          background:
+            "linear-gradient(135deg, #064e3b 0%, #0f766e 50%, #047857 100%)",
         }}
       ></div>
-      
-      {/* Play Button Overlay */}
-      {showPlayButton && (
-        <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/20">
-          <button
-            onClick={handlePlay}
-            className="bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-6 transition-all duration-200"
-          >
-            <svg
-              className="w-12 h-12 text-white"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          </button>
-        </div>
-      )}
-      
+
+      {/* Play Button Overlay intentionally removed */}
+
       {/* Main Content */}
       <div className="relative z-20 min-h-screen flex flex-col">
         {/* Header */}
@@ -94,35 +102,52 @@ export default function Home() {
               priority
               draggable={false}
               className="w-40 sm:w-44 md:w-48 lg:w-52 h-auto object-contain"
-            />  
+            />
           </div>
         </header>
-        
+
         {/* Main Content Area */}
         <main className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 text-center">
-            <h1 className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6 tracking-tight">
-              High stakes.<br className="sm:hidden" /> Higher standards.
-            </h1>
+          <h1 className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6 tracking-tight">
+            High stakes.
+            <br className="sm:hidden" /> Higher standards.
+          </h1>
           <p className="text-white text-base sm:text-lg md:text-xl max-w-sm sm:max-w-md md:max-w-lg leading-relaxed mb-8">
             Action-biased consulting and venture building for critical missions.
           </p>
-          
+
           {/* Coming Soon Indicator */}
           <div className="flex items-center space-x-3 text-white/70 text-sm">
             <div className="flex space-x-1">
               <div className="w-2 h-2 bg-white/40 rounded-full animate-pulse"></div>
-              <div className="w-2 h-2 bg-white/40 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-              <div className="w-2 h-2 bg-white/40 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+              <div
+                className="w-2 h-2 bg-white/40 rounded-full animate-pulse"
+                style={{ animationDelay: "0.2s" }}
+              ></div>
+              <div
+                className="w-2 h-2 bg-white/40 rounded-full animate-pulse"
+                style={{ animationDelay: "0.4s" }}
+              ></div>
             </div>
-            <span className="text-xs tracking-wide uppercase">More details soon</span>
+            <span className="text-xs tracking-wide uppercase">
+              More details soon
+            </span>
           </div>
         </main>
-        
+
         {/* Footer */}
-        <footer className="py-6 px-6 sm:py-8 sm:px-8" style={{ backgroundColor: 'var(--color-dark-green)' }}>
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-0 text-sm sm:text-base" style={{ color: 'var(--color-white)' }}>
+        <footer
+          className="py-6 px-6 sm:py-8 sm:px-8"
+          style={{ backgroundColor: "var(--color-dark-green)" }}
+        >
+          <div
+            className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-0 text-sm sm:text-base"
+            style={{ color: "var(--color-white)" }}
+          >
             <p>©2025 Vantir. All Rights Reserved.</p>
-            <a href="mailto:info@vantir.se" className="hover:underline">info@vantir.se</a>
+            <a href="mailto:info@vantir.se" className="hover:underline">
+              info@vantir.se
+            </a>
           </div>
         </footer>
       </div>
