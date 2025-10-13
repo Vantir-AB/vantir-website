@@ -9,9 +9,13 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.vantir.se"),
   title: "Vantir",
   description:
     "Consultancy - Reimagined. Vantir specializes in action-biased consulting and venture building for critical missions, leveraging data, AI, and cloud technologies.",
+  verification: {
+    google: "WcjCXIcf5UHYAztl45UWiVDhe0hXMzi86p0xZueCGlI",
+  },
   keywords: [
     "Vantir",
     "consulting",
@@ -56,9 +60,9 @@ export const metadata: Metadata = {
       index: true,
       follow: true,
       noimageindex: false,
-      maxSnippet: -1,
-      maxImagePreview: "large",
-      maxVideoPreview: -1,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
     },
   },
   alternates: {
