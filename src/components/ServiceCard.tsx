@@ -1,0 +1,88 @@
+import Image from "next/image";
+
+// Service Card Component
+interface ServiceCardProps {
+  iconSrc: string;
+  iconAlt: string;
+  title: string;
+  description: string;
+}
+
+export default function ServiceCard({ iconSrc, iconAlt, title, description }: ServiceCardProps) {
+  return (
+    <div 
+      className="p-8 rounded-xl h-120 relative"
+      style={{
+        backgroundColor: "color-mix(in srgb, var(--color-emerald) 20%, transparent)",
+        border: "1px solid var(--color-mint)"
+      }}
+    >
+      {/* Icon */}
+      <div className="absolute top-6 left-6">
+        <Image
+          src={iconSrc}
+          alt={iconAlt}
+          width={64}
+          height={64}
+          className="w-24 h-24"
+        />
+      </div>
+      
+      {/* Title */}
+      <h3 
+        className="absolute text-3xl font-bold text-left"
+        style={{ 
+          color: "var(--color-almost-white)",
+          fontWeight: "var(--font-heading)",
+          bottom: "45%",
+          left: "2rem",
+          right: "2rem"
+        }}
+      >
+        {title}
+      </h3>
+      
+      {/* Separator */}
+      <div 
+        className="absolute h-px"
+        style={{ 
+          backgroundColor: "var(--color-mint)",
+          top: "60%",
+          left: "2rem",
+          right: "2rem"
+        }}
+      ></div>
+      
+      {/* Description */}
+      <p 
+        className="absolute text-left"
+        style={{ 
+          color: "var(--color-almost-white)",
+          fontWeight: "var(--font-body)",
+          top: "65%",
+          left: "2rem",
+          right: "2rem",
+          bottom: "4rem"
+        }}
+      >
+        {description}
+      </p>
+      
+      {/* Learn More Link */}
+      <div 
+        className="absolute bottom-6 left-8"
+      >
+        <a 
+          href="#"
+          className="inline-block text-lg font-medium"
+          style={{ 
+            color: "var(--color-bright-green)",
+            fontWeight: "var(--font-button)"
+          }}
+        >
+          Learn More
+        </a>
+      </div>
+    </div>
+  );
+}
