@@ -7,8 +7,6 @@ import ServiceCard from "@/components/ServiceCard";
 export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
   const [showPoster, setShowPoster] = useState(true);
-  const [showNavbar, setShowNavbar] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handlePlay = () => {
@@ -59,34 +57,6 @@ export default function Home() {
     };
   }, []);
 
-  // Navbar scroll behavior
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      if (currentScrollY > 250) {
-        // Only show sticky navbar when scrolled past the original header
-        if (currentScrollY > lastScrollY) {
-          // Scrolling down - hide navbar
-          setShowNavbar(false);
-        } else {
-          // Scrolling up - show navbar
-          setShowNavbar(true);
-        }
-      } else {
-        // At the top - hide sticky navbar (original header is visible)
-        setShowNavbar(false);
-      }
-      
-      setLastScrollY(currentScrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [lastScrollY]);
 
   return (
     <div className="min-h-screen">
@@ -148,139 +118,6 @@ export default function Home() {
           className="absolute inset-0 -z-10 gradient-green-1"
         ></div>
 
-        {/* Header */}
-        <header className="relative z-20 flex justify-between items-center p-4 sm:p-6 md:p-8">
-          {/* Logo */}
-          <div className="flex items-center">
-            <Image
-              src="/logo-white.png"
-              alt="Vantir Logo"
-              width={199}
-              height={38}
-              priority
-              draggable={false}
-              className="w-40 sm:w-44 md:w-48 lg:w-52 h-auto object-contain"
-            />
-          </div>
-
-          {/* Navigation */}
-          <nav className="hidden md:flex items-center">
-            <div
-              className="flex items-center px-6 py-3 rounded-lg"
-              style={{
-                background:
-                  "linear-gradient(90deg, color-mix(in srgb, var(--color-emerald) 70%, transparent) 0%, color-mix(in srgb, var(--color-dark-green) 70%, transparent) 95%)",
-                border: "1px solid color-mix(in srgb, var(--color-mint) 40%, transparent)",
-                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
-              }}
-            >
-              <a
-                href="#"
-                className="hover:text-white transition-colors px-4 text-button"
-                style={{ color: "var(--color-mint)" }}
-              >
-                Consulting
-              </a>
-              <a
-                href="#"
-                className="hover:text-white transition-colors px-4 text-button"
-                style={{ color: "var(--color-mint)" }}
-              >
-                Technical Due Diligence
-              </a>
-              <a
-                href="#"
-                className="hover:text-white transition-colors px-4 text-button"
-                style={{ color: "var(--color-mint)" }}
-              >
-                Ventures
-              </a>
-              <a
-                href="#"
-                className="hover:text-white transition-colors px-4 text-button"
-                style={{ color: "var(--color-mint)" }}
-              >
-                Careers
-              </a>
-            </div>
-          </nav>
-
-          {/* CTA Button */}
-          <button
-            className="px-6 py-3 rounded-xl transition-colors font-['Manrope']"
-            style={{
-              background: "linear-gradient(90deg, #184A4B 0%, #042222 95%)",
-              color: "#BDFFE1",
-              border: "2px solid #BDFFE1",
-              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
-            }}
-          >
-            Get in touch
-          </button>
-        </header>
-
-        {/* Sticky Navigation - Right side only */}
-        <div 
-          className={`fixed top-0 right-0 z-50 transition-opacity duration-500 ease-in-out p-4 sm:p-6 md:p-8 ${
-            showNavbar ? 'opacity-100' : 'opacity-0'
-          }`}
-        >
-          <div className="flex items-center gap-4">
-            {/* Navigation */}
-            <div className="hidden md:flex items-center">
-              <div
-                className="flex items-center px-6 py-3 rounded-lg"
-                style={{
-                  background:
-                    "linear-gradient(90deg, color-mix(in srgb, var(--color-emerald) 70%, transparent) 0%, color-mix(in srgb, var(--color-dark-green) 70%, transparent) 95%)",
-                  border: "1px solid color-mix(in srgb, var(--color-mint) 40%, transparent)",
-                  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
-                }}
-              >
-                <a
-                  href="#"
-                  className="hover:text-white transition-colors px-4 text-button"
-                  style={{ color: "var(--color-mint)" }}
-                >
-                  Consulting
-                </a>
-                <a
-                  href="#"
-                  className="hover:text-white transition-colors px-4 text-button"
-                  style={{ color: "var(--color-mint)" }}
-                >
-                  Technical Due Diligence
-                </a>
-                <a
-                  href="#"
-                  className="hover:text-white transition-colors px-4 text-button"
-                  style={{ color: "var(--color-mint)" }}
-                >
-                  Ventures
-                </a>
-                <a
-                  href="#"
-                  className="hover:text-white transition-colors px-4 text-button"
-                  style={{ color: "var(--color-mint)" }}
-                >
-                  Careers
-                </a>
-              </div>
-            </div>
-
-            {/* CTA Button */}
-            <button
-              className="px-6 py-3 rounded-xl transition-colors text-button gradient-dark"
-              style={{
-                color: "var(--color-mint)",
-                border: "2px solid var(--color-mint)",
-                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
-              }}
-            >
-              Get in touch
-            </button>
-          </div>
-        </div>
 
         {/* Hero Content */}
         <div className="relative z-20 h-full flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 text-center -mt-16">
@@ -371,6 +208,103 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Centered Text Section */}
+      <section className="py-48" style={{ backgroundColor: "var(--color-almost-white)" }}>
+        <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-8 text-center">
+          <p className="text-heading leading-[110%]" style={{ color: "var(--color-black)" }}>
+          We help companies master cloud,<br /> data & AI – and become self-<br />sufficient in the process.          </p>
+        </div>
+      </section>
+
+      {/* Call to Action Section */}
+      <section className="py-48" style={{ background: "var(--gradient-dark)" }}>
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+          <div className="max-w-4xl">
+            <div 
+              className="mb-6"
+              style={{ 
+                background: "var(--gradient-light-reversed)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                display: "inline-block"
+              }}
+            >
+              <h2 
+                className="text-4xl md:text-5xl lg:text-7xl font-bold text-left leading-tight"
+                style={{ 
+                  color: "transparent",
+                  fontWeight: "var(--font-display)"
+                }}
+              >
+                Let's build something lasting together.
+              </h2>
+            </div>
+            <p className="text-subtitle mb-8 text-left" style={{ color: "var(--color-almost-white)" }}>
+              Contact us to start the conversation.
+            </p>
+            <button
+              className="px-12 py-3 rounded-lg transition-colors font-['Manrope'] text-button"
+              style={{
+                background: "var(--gradient-dark)",
+                color: "var(--color-mint)",
+                border: "2px solid var(--color-mint)",
+                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
+              }}
+            >
+              Contact
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Careers Section */}
+      <section className="h-96 lg:h-[500px] flex">
+        {/* Left side - Background Image */}
+        <div className="w-full lg:w-2/5 relative overflow-hidden">
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: "url('/vantir-poster.jpg')",
+              backgroundPosition: "top right"
+            }}
+          />
+        </div>
+
+        {/* Right side - Content */}
+        <div className="w-full lg:w-3/5 flex items-center justify-start" style={{ backgroundColor: "var(--color-almost-white)" }}>
+          <div className="max-w-2xl px-4 sm:px-6 md:px-8 lg:pl-16">
+            <h2 
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-left leading-tight"
+              style={{ 
+                color: "var(--color-dark-green)",
+                fontWeight: "var(--font-display)"
+              }}
+            >
+              Want to be part of<br />
+              our team?
+            </h2>
+            <p 
+              className="text-subtitle mb-8 text-left"
+              style={{ color: "var(--color-dark-green)" }}
+            >
+              We are looking for talented people to join us.
+            </p>
+            <button
+              className="px-12 py-4 rounded-xl transition-colors font-['Manrope'] text-button mt-2"
+              style={{
+                background: "var(--gradient-light-reversed)",
+                color: "var(--color-dark-green)",
+                border: "2px solid var(--color-dark-green)",
+              }}
+            >
+              Get in touch
+            </button>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }
