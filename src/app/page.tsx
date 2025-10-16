@@ -143,11 +143,11 @@ export default function Home() {
 
       {/* Content Section - Bottom Half */}
       <section
-        className="py-48"
+        className="py-16 sm:py-24 lg:py-48"
         style={{ backgroundColor: "var(--color-almost-white)" }}
       >
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pt-2 pb-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16 items-start">
             {/* Left Content */}
             <div
               className="lg:col-span-2"
@@ -163,7 +163,7 @@ export default function Home() {
 
             {/* Right Content */}
             <div
-              className="text-left ml-auto"
+              className="text-left ml-0 lg:ml-auto"
               style={{ color: "var(--color-black)" }}
             >
               <p className="text-subtitle">
@@ -180,7 +180,7 @@ export default function Home() {
 
       {/* Our Services Section */}
       <section
-        className="py-24"
+        className="py-16 sm:py-24"
         style={{ backgroundColor: "var(--color-dark-green)" }}
       >
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
@@ -198,7 +198,7 @@ export default function Home() {
           </div>
 
           {/* Services Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
             <ServiceCard
               iconSrc="/homepage/2circle.svg"
               iconAlt="Consulting"
@@ -223,12 +223,12 @@ export default function Home() {
 
       {/* Centered Text Section */}
       <section
-        className="py-48"
+        className="py-16 sm:py-24 lg:py-48"
         style={{ backgroundColor: "var(--color-almost-white)" }}
       >
         <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-8 text-center">
           <p
-            className="text-heading leading-[110%]"
+            className="leading-[110%] font-[var(--font-heading)] text-[1.25rem] sm:text-[1.5rem] md:text-[2rem] lg:text-[2.5rem]"
             style={{ color: "var(--color-black)" }}
           >
             We help companies master cloud,
@@ -240,7 +240,10 @@ export default function Home() {
       </section>
 
       {/* Call to Action Section */}
-      <section className="py-48" style={{ background: "var(--gradient-dark)" }}>
+      <section
+        className="py-16 sm:py-24 lg:py-48"
+        style={{ background: "var(--gradient-dark)" }}
+      >
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
           <div className="max-w-4xl">
             <div
@@ -285,9 +288,9 @@ export default function Home() {
       </section>
 
       {/* Careers Section */}
-      <section className="h-96 lg:h-[500px] flex">
+      <section className="h-auto lg:h-[500px] flex flex-col lg:flex-row">
         {/* Left side - Background Image */}
-        <div className="w-full lg:w-2/5 relative overflow-hidden">
+        <div className="w-full lg:w-2/5 relative overflow-hidden h-56 sm:h-72 lg:h-auto">
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{
@@ -299,7 +302,7 @@ export default function Home() {
 
         {/* Right side - Content */}
         <div
-          className="w-full lg:w-3/5 flex items-center justify-start"
+          className="w-full lg:w-3/5 flex items-center justify-start py-8 lg:py-0"
           style={{ backgroundColor: "var(--color-almost-white)" }}
         >
           <div className="max-w-2xl px-4 sm:px-6 md:px-8 lg:pl-16">
