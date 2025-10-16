@@ -155,7 +155,7 @@ export default function Home() {
             >
               <p className="text-heading leading-[110%]">
                 We help companies build, evaluate, and scale technology with
-                clarity and precision—from AI, cloud, and data consulting to
+                clarity and precision — from AI, cloud, and data consulting to
                 rigorous technical due diligence, ensuring they remain
                 competitive in today’s AI-driven world.
               </p>

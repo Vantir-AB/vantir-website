@@ -14,14 +14,14 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.vantir.se"),
   title: "Vantir",
   description:
-    "Consultancy - Reimagined. Vantir specializes in action-biased consulting and venture building for critical missions, leveraging data, AI, and cloud technologies.",
+    "Consultancy - Reimagined. Vantir specializes in action-oriented consulting and venture building for critical missions, leveraging data, AI, and cloud technologies.",
   verification: {
     google: "WcjCXIcf5UHYAztl45UWiVDhe0hXMzi86p0xZueCGlI",
   },
   keywords: [
     "Vantir",
     "consulting",
-    "action-biased consulting",
+    "action-oriented consulting",
     "venture building",
     "critical missions",
     "data",
@@ -35,12 +35,12 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Vantir",
     description:
-      "Consultancy - Reimagined. Vantir specializes in action-biased consulting and venture building for critical missions, leveraging data, AI, and cloud technologies.",
+      "Consultancy - Reimagined. Vantir specializes in action-oriented consulting and venture building for critical missions, leveraging data, AI, and cloud technologies.",
     type: "website",
     siteName: "Vantir",
     images: [
       {
-        url: "/vantir-poster.jpg",
+        url: "/vantir-poster-logo.png",
         width: 1200,
         height: 630,
         alt: "Vantir — Consultancy Reimagined",
@@ -52,8 +52,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Vantir",
     description:
-      "Consultancy - Reimagined. Vantir specializes in action-biased consulting and venture building for critical missions, leveraging data, AI, and cloud technologies.",
-    images: ["/vantir-poster.jpg"],
+      "Consultancy - Reimagined. Vantir specializes in action-oriented consulting and venture building for critical missions, leveraging data, AI, and cloud technologies.",
+    images: ["/vantir-poster-logo.png"],
   },
   robots: {
     index: true,
