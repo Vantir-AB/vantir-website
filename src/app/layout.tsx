@@ -10,16 +10,16 @@ const manrope = Manrope({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.vantir.se"),
-  title: "Vantir",
+  title: "Vantir | AI, Data & Cloud for Critical Missions",
   description:
-    "Consultancy - Reimagined. Vantir specializes in action-biased consulting and venture building for critical missions, leveraging data, AI, and cloud technologies.",
+    "Consultancy - Reimagined. Vantir specializes in action-oriented consulting and venture building for critical missions, leveraging data, AI, and cloud technologies.",
   verification: {
     google: "WcjCXIcf5UHYAztl45UWiVDhe0hXMzi86p0xZueCGlI",
   },
   keywords: [
     "Vantir",
     "consulting",
-    "action-biased consulting",
+    "action-oriented consulting",
     "venture building",
     "critical missions",
     "data",
@@ -28,14 +28,23 @@ export const metadata: Metadata = {
     "cloud",
     "strategy",
     "Sweden",
+    "Stockholm",
     "Nordics",
+    "technical due diligence",
+    "technical due diligence services",
+    "technical due diligence company",
+    "technical due diligence provider",
+    "it konsulter",
+    "it consultant",
+    "AI konsulter",
+    "AI consultant",
   ],
   openGraph: {
-    title: "Vantir",
+    title: "Vantir | AI, Data & Cloud for Critical Missions",
     description:
-      "Consultancy - Reimagined. Vantir specializes in action-biased consulting and venture building for critical missions, leveraging data, AI, and cloud technologies.",
+      "Consultancy - Reimagined. Vantir specializes in action-oriented consulting and venture building for critical missions, leveraging data, AI, and cloud technologies.",
     type: "website",
-    siteName: "Vantir",
+    siteName: "Vantir | AI, Data & Cloud for Critical Missions",
     images: [
       {
         url: "/vantir-poster-logo.png",
@@ -48,9 +57,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vantir",
+    title: "Vantir | AI, Data & Cloud for Critical Missions",
     description:
-      "Consultancy - Reimagined. Vantir specializes in action-biased consulting and venture building for critical missions, leveraging data, AI, and cloud technologies.",
+      "Consultancy - Reimagined. Vantir specializes in action-oriented consulting and venture building for critical missions, leveraging data, AI, and cloud technologies.",
     images: ["/vantir-poster-logo.png"],
   },
   robots: {
