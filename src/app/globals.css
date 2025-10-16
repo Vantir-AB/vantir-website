@@ -9,13 +9,16 @@
   /* Neutrals */
   --color-black: #000000;
   --color-almost-white: #F8F8F9;
+  --color-seafoam: #79A9AA;
   
   /* Secondary Colors */
   --color-viridian: #2DC195;
   --color-bright-green: #01DF82;
+
   
   /* Gradients */
   --gradient-light: linear-gradient(135deg, var(--color-mint) 0%, var(--color-almost-white) 100%);
+  --gradient-light-reversed: linear-gradient(135deg, var(--color-almost-white) 0%, var(--color-mint) 100%);
   --gradient-dark: linear-gradient(135deg, var(--color-emerald) 0%, var(--color-dark-green) 100%);
   --gradient-green-1: linear-gradient(135deg, var(--color-mint) 0%, var(--color-viridian) 50%, var(--color-emerald) 100%);
   --gradient-green-2: linear-gradient(135deg, var(--color-mint) 0%, var(--color-bright-green) 50%, var(--color-emerald) 100%);
