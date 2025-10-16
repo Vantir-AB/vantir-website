@@ -30,17 +30,17 @@ export default function Home() {
     const attemptPlay = () => {
       if (videoRef.current) {
         videoRef.current.play().catch((error) => {
-          console.log('Autoplay failed:', error);
+          console.log("Autoplay failed:", error);
           // Try again after user interaction
           const handleUserInteraction = () => {
             if (videoRef.current && videoRef.current.paused) {
               videoRef.current.play().catch(() => {});
             }
-            document.removeEventListener('click', handleUserInteraction);
-            document.removeEventListener('touchstart', handleUserInteraction);
+            document.removeEventListener("click", handleUserInteraction);
+            document.removeEventListener("touchstart", handleUserInteraction);
           };
-          document.addEventListener('click', handleUserInteraction);
-          document.addEventListener('touchstart', handleUserInteraction);
+          document.addEventListener("click", handleUserInteraction);
+          document.addEventListener("touchstart", handleUserInteraction);
         });
       }
     };
@@ -56,7 +56,6 @@ export default function Home() {
       clearTimeout(timer3);
     };
   }, []);
-
 
   return (
     <div className="min-h-screen">
@@ -114,23 +113,24 @@ export default function Home() {
         )}
 
         {/* Fallback gradient background */}
-        <div
-          className="absolute inset-0 -z-10 gradient-green-1"
-        ></div>
-
+        <div className="absolute inset-0 -z-10 gradient-green-1"></div>
 
         {/* Hero Content */}
-        <div className="relative z-20 h-full flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 text-center -mt-16">
+        <div className="relative z-20 h-full flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 text-center pt-4">
           <h1
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-6 tracking-tight"
             style={{
-              color: "var(--color-almost-white)",
+              background: "linear-gradient(90deg, #F8F8F9 0%, #BDFFE1 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
               lineHeight: "1.2",
               paddingBottom: "0.2em",
               fontWeight: "var(--font-display)",
             }}
           >
             High stakes.
+            <br />
             Higher standards.
           </h1>
           <p className="text-white text-lg md:text-xl max-w-2xl leading-relaxed">
@@ -142,11 +142,17 @@ export default function Home() {
       </div>
 
       {/* Content Section - Bottom Half */}
-      <section className="py-48" style={{ backgroundColor: "var(--color-almost-white)" }}>
+      <section
+        className="py-48"
+        style={{ backgroundColor: "var(--color-almost-white)" }}
+      >
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pt-2 pb-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             {/* Left Content */}
-            <div className="lg:col-span-1" style={{ color: "var(--color-black)" }}>
+            <div
+              className="lg:col-span-1"
+              style={{ color: "var(--color-black)" }}
+            >
               <p className="text-heading leading-[110%]">
                 We help companies build, evaluate, and scale technology with
                 clarity and precision — from technical due diligence and cloud,
@@ -156,7 +162,10 @@ export default function Home() {
             </div>
 
             {/* Right Content */}
-            <div className="text-left ml-32" style={{ color: "var(--color-black)" }}>
+            <div
+              className="text-left ml-32"
+              style={{ color: "var(--color-black)" }}
+            >
               <p className="text-subtitle">
                 We don't just build solutions.
                 <br />
@@ -170,15 +179,18 @@ export default function Home() {
       </section>
 
       {/* Our Services Section */}
-      <section className="py-24" style={{ backgroundColor: "var(--color-dark-green)" }}>
+      <section
+        className="py-24"
+        style={{ backgroundColor: "var(--color-dark-green)" }}
+      >
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
           {/* Section Title */}
           <div className="text-center mb-16">
-            <h2 
+            <h2
               className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-left"
-              style={{ 
+              style={{
                 color: "var(--color-almost-white)",
-                fontWeight: "var(--font-display)"
+                fontWeight: "var(--font-display)",
               }}
             >
               The things we do
@@ -210,10 +222,20 @@ export default function Home() {
       </section>
 
       {/* Centered Text Section */}
-      <section className="py-48" style={{ backgroundColor: "var(--color-almost-white)" }}>
+      <section
+        className="py-48"
+        style={{ backgroundColor: "var(--color-almost-white)" }}
+      >
         <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-8 text-center">
-          <p className="text-heading leading-[110%]" style={{ color: "var(--color-black)" }}>
-          We help companies master cloud,<br /> data & AI – and become self-<br />sufficient in the process.          </p>
+          <p
+            className="text-heading leading-[110%]"
+            style={{ color: "var(--color-black)" }}
+          >
+            We help companies master cloud,
+            <br /> data & AI – and become self-
+            <br />
+            sufficient in the process.{" "}
+          </p>
         </div>
       </section>
 
@@ -221,27 +243,30 @@ export default function Home() {
       <section className="py-48" style={{ background: "var(--gradient-dark)" }}>
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
           <div className="max-w-4xl">
-            <div 
+            <div
               className="mb-6"
-              style={{ 
+              style={{
                 background: "var(--gradient-light-reversed)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
-                display: "inline-block"
+                display: "inline-block",
               }}
             >
-              <h2 
+              <h2
                 className="text-4xl md:text-5xl lg:text-7xl font-bold text-left leading-tight"
-                style={{ 
+                style={{
                   color: "transparent",
-                  fontWeight: "var(--font-display)"
+                  fontWeight: "var(--font-display)",
                 }}
               >
                 Let's build something lasting together.
               </h2>
             </div>
-            <p className="text-subtitle mb-8 text-left" style={{ color: "var(--color-almost-white)" }}>
+            <p
+              className="text-subtitle mb-8 text-left"
+              style={{ color: "var(--color-almost-white)" }}
+            >
               Contact us to start the conversation.
             </p>
             <button
@@ -263,29 +288,33 @@ export default function Home() {
       <section className="h-96 lg:h-[500px] flex">
         {/* Left side - Background Image */}
         <div className="w-full lg:w-2/5 relative overflow-hidden">
-          <div 
+          <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{
               backgroundImage: "url('/vantir-poster.jpg')",
-              backgroundPosition: "top right"
+              backgroundPosition: "top right",
             }}
           />
         </div>
 
         {/* Right side - Content */}
-        <div className="w-full lg:w-3/5 flex items-center justify-start" style={{ backgroundColor: "var(--color-almost-white)" }}>
+        <div
+          className="w-full lg:w-3/5 flex items-center justify-start"
+          style={{ backgroundColor: "var(--color-almost-white)" }}
+        >
           <div className="max-w-2xl px-4 sm:px-6 md:px-8 lg:pl-16">
-            <h2 
+            <h2
               className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-left leading-tight"
-              style={{ 
+              style={{
                 color: "var(--color-dark-green)",
-                fontWeight: "var(--font-display)"
+                fontWeight: "var(--font-display)",
               }}
             >
-              Want to be part of<br />
+              Want to be part of
+              <br />
               our team?
             </h2>
-            <p 
+            <p
               className="text-subtitle mb-8 text-left"
               style={{ color: "var(--color-dark-green)" }}
             >
@@ -304,7 +333,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
     </div>
   );
 }
