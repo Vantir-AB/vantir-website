@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     siteName: "Vantir",
     images: [
       {
-        url: "/vantir-poster.jpg",
+        url: "/vantir-poster-logo.png",
         width: 1200,
         height: 630,
         alt: "Vantir — Consultancy Reimagined",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     title: "Vantir",
     description:
       "Consultancy - Reimagined. Vantir specializes in action-biased consulting and venture building for critical missions, leveraging data, AI, and cloud technologies.",
-    images: ["/vantir-poster.jpg"],
+    images: ["/vantir-poster-logo.png"],
   },
   robots: {
     index: true,
