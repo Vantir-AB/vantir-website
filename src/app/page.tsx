@@ -147,23 +147,23 @@ export default function Home() {
         style={{ backgroundColor: "var(--color-almost-white)" }}
       >
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pt-2 pb-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 items-start">
             {/* Left Content */}
             <div
-              className="lg:col-span-1"
+              className="lg:col-span-2"
               style={{ color: "var(--color-black)" }}
             >
               <p className="text-heading leading-[110%]">
                 We help companies build, evaluate, and scale technology with
-                clarity and precision — from technical due diligence and cloud,
-                data, and AI consulting to supporting companies on their path to
-                growth.
+                clarity and precision—from AI, cloud, and data consulting to
+                rigorous technical due diligence, ensuring they remain
+                competitive in today’s AI-driven world.
               </p>
             </div>
 
             {/* Right Content */}
             <div
-              className="text-left ml-32"
+              className="text-left ml-auto"
               style={{ color: "var(--color-black)" }}
             >
               <p className="text-subtitle">
@@ -203,7 +203,7 @@ export default function Home() {
               iconSrc="/homepage/2circle.svg"
               iconAlt="Consulting"
               title="Consulting"
-              description="We help organizations design and implement cloud, data, and AI solutions that drive lasting business impact."
+              description="We help organizations design and implement AI, cloud and data solutions that drive lasting business impact."
             />
             <ServiceCard
               iconSrc="/homepage/3circle.svg"
