@@ -10,7 +10,7 @@ const manrope = Manrope({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.vantir.se"),
-  title: "Vantir | AI, Data & Cloud for Critical Missions",
+  title: "Vantir Consulting | AI, Data & Cloud for Critical Missions",
   description:
     "Consultancy - Reimagined. Vantir specializes in action-oriented consulting and venture building for critical missions, leveraging data, AI, and cloud technologies.",
   verification: {
@@ -40,11 +40,11 @@ export const metadata: Metadata = {
     "AI consultant",
   ],
   openGraph: {
-    title: "Vantir | AI, Data & Cloud for Critical Missions",
+    title: "Vantir Consulting | AI, Data & Cloud for Critical Missions",
     description:
       "Consultancy - Reimagined. Vantir specializes in action-oriented consulting and venture building for critical missions, leveraging data, AI, and cloud technologies.",
     type: "website",
-    siteName: "Vantir | AI, Data & Cloud for Critical Missions",
+    siteName: "Vantir Consulting | AI, Data & Cloud for Critical Missions",
     images: [
       {
         url: "/vantir-poster-logo.png",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vantir | AI, Data & Cloud for Critical Missions",
+    title: "Vantir Consulting | AI, Data & Cloud for Critical Missions",
     description:
       "Consultancy - Reimagined. Vantir specializes in action-oriented consulting and venture building for critical missions, leveraging data, AI, and cloud technologies.",
     images: ["/vantir-poster-logo.png"],

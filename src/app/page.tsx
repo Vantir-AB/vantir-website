@@ -113,7 +113,8 @@ export default function Home() {
             <br className="sm:hidden" /> Higher standards.
           </h1>
           <p className="text-white text-base sm:text-lg md:text-xl max-w-sm sm:max-w-md md:max-w-lg leading-relaxed mb-8">
-            Action-biased consulting and venture building for critical missions.
+            Action-oriented consulting and venture building for critical
+            missions.
           </p>
 
           {/* Coming Soon Indicator */}
