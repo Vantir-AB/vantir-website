@@ -39,8 +39,8 @@ export default function ServiceCard({ iconSrc, iconAlt, title, description }: Se
         count={isMobile ? 2 : 5}
         opacity={isMobile ? 0.4 : 0.6}
         speed={isMobile ? 12 : 8}
-        blur={isMobile ? 20 : 40}
-        width={isMobile ? 50 : 50}
+        blur={isMobile ? 40 : 40}
+        width={isMobile ? 130 : 50}
         ambientGlow={isMobile ? 0.1 : 0.2}
       />
       <ShineBorder
