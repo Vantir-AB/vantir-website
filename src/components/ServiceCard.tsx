@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { ShineBorder } from "./ui/shine-border";
+import { LightRays } from "./ui/light-rays";
 
 // Service Card Component
 interface ServiceCardProps {
@@ -13,10 +15,24 @@ export default function ServiceCard({ iconSrc, iconAlt, title, description }: Se
     <div 
       className="p-8 rounded-xl h-120 relative"
       style={{
-        backgroundColor: "color-mix(in srgb, var(--color-emerald) 20%, transparent)",
-        border: "1px solid var(--color-mint)"
+        backgroundColor: "var(--color-dark-green)",
       }}
     >
+      <LightRays 
+        color="var(--color-mint)"
+        count={5}
+        opacity={0.6}
+        speed={8}
+        blur={40}
+        width={50}
+        ambientGlow={0.2}
+      />
+      <ShineBorder
+        baseColor="var(--color-mint)"
+        shineColor={["var(--color-almost-white)", "var(--color-mint)"]}
+        duration={3}
+        borderWidth={1.5}
+      />
       {/* Icon */}
       <div className="absolute top-6 left-6">
         <Image

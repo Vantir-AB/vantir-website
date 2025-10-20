@@ -1,8 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import ServiceCard from "@/components/ServiceCard";
+import { ShineBorder } from "@/components/ui/shine-border";
+import { LightRays } from "@/components/ui/light-rays";
 
 export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
@@ -25,6 +26,11 @@ export default function Home() {
       typeof window !== "undefined" &&
       window.matchMedia("(max-width: 768px)").matches;
     setIsMobile(isIOS || isAndroid || smallViewport);
+
+    // Set normal playback rate
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 1.0;
+    }
 
     // Try to play video with multiple attempts
     const attemptPlay = () => {
@@ -70,6 +76,8 @@ export default function Home() {
           playsInline
           preload="auto"
           poster="/vantir-poster.jpg"
+          disablePictureInPicture
+          disableRemotePlayback
           className="absolute inset-0 z-0 w-full h-full object-cover"
           onLoadStart={() => {}}
           onCanPlay={() => {
@@ -84,9 +92,17 @@ export default function Home() {
           }}
           onLoadedData={() => {
             setShowPoster(false);
+            // Ensure normal playback
+            if (videoRef.current) {
+              videoRef.current.playbackRate = 1.0;
+            }
           }}
           onPlay={() => {
             setShowPoster(false);
+            // Ensure playback rate is set
+            if (videoRef.current) {
+              videoRef.current.playbackRate = 1.0;
+            }
           }}
           onPause={() => {
             // If video pauses unexpectedly, try to play again
@@ -98,7 +114,6 @@ export default function Home() {
           }}
         >
           <source src="/vantir webm.webm" type="video/webm" />
-          <source src="/vantir-norrsken.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 
@@ -118,7 +133,7 @@ export default function Home() {
         {/* Hero Content */}
         <div className="relative z-20 h-full flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 text-center pt-4">
           <h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-6 tracking-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-6 tracking-tight select-none"
             style={{
               background: "linear-gradient(90deg, #F8F8F9 0%, #BDFFE1 100%)",
               WebkitBackgroundClip: "text",
@@ -127,13 +142,15 @@ export default function Home() {
               lineHeight: "1.2",
               paddingBottom: "0.2em",
               fontWeight: "var(--font-display)",
+              pointerEvents: "none",
+              userSelect: "none",
             }}
           >
             High stakes.
             <br />
             Higher standards.
           </h1>
-          <p className="text-white text-lg md:text-xl max-w-2xl leading-relaxed">
+          <p className="text-lg md:text-xl max-w-2xl leading-relaxed" style={{ color: "var(--color-almost-white)" }}>
             Action-oriented consulting and venture
             <br />
             building for critical missions.
@@ -180,9 +197,10 @@ export default function Home() {
 
       {/* Our Services Section */}
       <section
-        className="py-16 sm:py-24"
+        className="relative py-16 sm:py-24"
         style={{ backgroundColor: "var(--color-dark-green)" }}
       >
+
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
           {/* Section Title */}
           <div className="text-center mb-16">
@@ -273,15 +291,19 @@ export default function Home() {
               Contact us to start the conversation.
             </p>
             <button
-              className="px-12 py-3 rounded-lg transition-colors font-['Manrope'] text-button"
+              className="relative px-12 py-4 rounded-lg transition-colors font-['Manrope'] text-button mt-2 overflow-hidden"
               style={{
                 background: "var(--gradient-dark)",
                 color: "var(--color-mint)",
-                border: "2px solid var(--color-mint)",
-                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
               }}
             >
-              Contact
+              <ShineBorder
+                baseColor="var(--color-mint)"
+                shineColor={["var(--color-almost-white)", "var(--color-mint)"]}
+                duration={15}
+                borderWidth={2}
+              />
+              Get in touch
             </button>
           </div>
         </div>
@@ -294,7 +316,7 @@ export default function Home() {
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: "url('/vantir-poster.jpg')",
+              backgroundImage: "url('/image copy.png')",
               backgroundPosition: "top right",
             }}
           />
@@ -324,13 +346,18 @@ export default function Home() {
               We are looking for talented people to join us.
             </p>
             <button
-              className="px-12 py-4 rounded-xl transition-colors font-['Manrope'] text-button mt-2"
+              className="relative px-12 py-4 rounded-lg transition-colors font-['Manrope'] text-button mt-2 overflow-hidden"
               style={{
                 background: "var(--gradient-light-reversed)",
                 color: "var(--color-dark-green)",
-                border: "2px solid var(--color-dark-green)",
               }}
             >
+              <ShineBorder
+                baseColor="var(--color-dark-green)"
+                shineColor={["var(--color-viridian)", "var(--color-emerald)", "var(--color-dark-green)"]}
+                duration={8}
+                borderWidth={2}
+              />
               Get in touch
             </button>
           </div>
