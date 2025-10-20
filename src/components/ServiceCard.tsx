@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import { ShineBorder } from "./ui/shine-border";
 import { LightRays } from "./ui/light-rays";
+import { useEffect, useState } from "react";
 
 // Service Card Component
 interface ServiceCardProps {
@@ -11,6 +14,19 @@ interface ServiceCardProps {
 }
 
 export default function ServiceCard({ iconSrc, iconAlt, title, description }: ServiceCardProps) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <div 
       className="p-8 rounded-xl h-120 relative"
@@ -20,12 +36,12 @@ export default function ServiceCard({ iconSrc, iconAlt, title, description }: Se
     >
       <LightRays 
         color="var(--color-mint)"
-        count={5}
-        opacity={0.6}
-        speed={8}
-        blur={40}
-        width={50}
-        ambientGlow={0.2}
+        count={isMobile ? 2 : 5}
+        opacity={isMobile ? 0.4 : 0.6}
+        speed={isMobile ? 12 : 8}
+        blur={isMobile ? 20 : 40}
+        width={isMobile ? 30 : 50}
+        ambientGlow={isMobile ? 0.1 : 0.2}
       />
       <ShineBorder
         baseColor="var(--color-mint)"
