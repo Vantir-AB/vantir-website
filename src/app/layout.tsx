@@ -90,7 +90,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${manrope.variable} antialiased`}>
-        <SmoothScroll />
         <Header />
         {children}
         <Footer />
