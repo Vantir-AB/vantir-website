@@ -50,18 +50,39 @@ export default function Home() {
       }
     };
 
-    // Try immediately and more frequently
+    // Try immediately and more frequently with additional attempts
     attemptPlay(); // Immediate attempt
     const timer1 = setTimeout(attemptPlay, 10);
     const timer2 = setTimeout(attemptPlay, 50);
     const timer3 = setTimeout(attemptPlay, 100);
     const timer4 = setTimeout(attemptPlay, 250);
+    const timer5 = setTimeout(attemptPlay, 500);
+    const timer6 = setTimeout(attemptPlay, 1000);
+
+    // Add global event listeners for user interaction
+    const handleUserInteraction = () => {
+      if (videoRef.current && videoRef.current.paused) {
+        videoRef.current.play().catch(() => {});
+      }
+    };
+
+    // Listen for any user interaction to trigger video play
+    document.addEventListener('click', handleUserInteraction);
+    document.addEventListener('touchstart', handleUserInteraction);
+    document.addEventListener('keydown', handleUserInteraction);
+    document.addEventListener('scroll', handleUserInteraction);
 
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
       clearTimeout(timer3);
       clearTimeout(timer4);
+      clearTimeout(timer5);
+      clearTimeout(timer6);
+      document.removeEventListener('click', handleUserInteraction);
+      document.removeEventListener('touchstart', handleUserInteraction);
+      document.removeEventListener('keydown', handleUserInteraction);
+      document.removeEventListener('scroll', handleUserInteraction);
     };
   }, []);
 
@@ -85,7 +106,13 @@ export default function Home() {
           preload="metadata"
           disablePictureInPicture
           disableRemotePlayback
+          webkit-playsinline="true"
+          x-webkit-airplay="allow"
           className="absolute inset-0 z-0 w-full h-full object-cover"
+          style={{
+            ['WebkitMediaControlsOverlayPlayButton' as any]: 'display: none !important',
+            ['WebkitMediaControlsPlayButton' as any]: 'display: none !important',
+          }}
           onLoadStart={() => {
             // Try to play as soon as loading starts
             if (videoRef.current && videoRef.current.paused) {
