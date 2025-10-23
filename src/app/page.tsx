@@ -94,7 +94,7 @@ export default function Home() {
         {/* Video Background */}
         {isMobile ? (
           <img
-            src="/background-new-mobile.gif"
+            src="/background-new-mobile-small.gif"
             alt="Background animation"
             className="absolute inset-0 z-0 w-full h-full object-cover"
             onLoad={() => setVideoLoaded(true)}
