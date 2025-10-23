@@ -103,7 +103,7 @@ export default function Home() {
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           disablePictureInPicture
           disableRemotePlayback
           webkit-playsinline="true"
@@ -164,12 +164,13 @@ export default function Home() {
           }}
         >
           <source src="/background-new.mp4" type="video/mp4" />
+          <source src="/background-new.webm" type="video/webm" />
           Your browser does not support the video tag.
         </video>
 
 
         {/* Fallback gradient background - only show if video fails */}
-        <div className="absolute inset-0 z-5 gradient-green-1" style={{ zIndex: -1 }}></div>
+        <div className="absolute inset-0 gradient-green-1" style={{ zIndex: -1 }}></div>
 
         {/* Hero Content */}
         <div className="relative z-20 h-full flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 text-center pt-4">
