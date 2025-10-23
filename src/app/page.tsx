@@ -7,6 +7,7 @@ import { LightRays } from "@/components/ui/light-rays";
 
 export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handlePlay = () => {
@@ -124,12 +125,14 @@ export default function Home() {
           }}
           onPlay={() => {
             console.log("Video is playing");
+            setVideoLoaded(true);
             // Ensure playback rate is set
             if (videoRef.current) {
               videoRef.current.playbackRate = 1.0;
             }
           }}
           onCanPlay={() => {
+            setVideoLoaded(true);
             // Try to play immediately when video is ready
             if (videoRef.current && videoRef.current.paused) {
               videoRef.current.play().catch(() => {});
@@ -137,6 +140,7 @@ export default function Home() {
           }}
           onLoadedMetadata={() => {
             console.log("Video metadata loaded");
+            setVideoLoaded(true);
             // Try to play as soon as metadata is loaded
             if (videoRef.current && videoRef.current.paused) {
               videoRef.current.play().catch((error) => {
@@ -170,7 +174,13 @@ export default function Home() {
 
 
         {/* Fallback gradient background - only show if video fails */}
-        <div className="absolute inset-0 gradient-green-1" style={{ zIndex: -1 }}></div>
+        <div 
+          className="absolute inset-0 gradient-green-1 transition-opacity duration-500" 
+          style={{ 
+            zIndex: -1, 
+            opacity: videoLoaded ? 0 : 0.3 
+          }}
+        ></div>
 
         {/* Hero Content */}
         <div className="relative z-20 h-full flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 text-center pt-4">
