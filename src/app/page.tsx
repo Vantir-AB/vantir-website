@@ -114,12 +114,16 @@ export default function Home() {
             ['WebkitMediaControlsPlayButton' as any]: 'display: none !important',
           }}
           onLoadStart={() => {
+            console.log("Video loading started");
             // Try to play as soon as loading starts
             if (videoRef.current && videoRef.current.paused) {
-              videoRef.current.play().catch(() => {});
+              videoRef.current.play().catch((error) => {
+                console.log("Play failed on load start:", error);
+              });
             }
           }}
           onPlay={() => {
+            console.log("Video is playing");
             // Ensure playback rate is set
             if (videoRef.current) {
               videoRef.current.playbackRate = 1.0;
@@ -132,12 +136,16 @@ export default function Home() {
             }
           }}
           onLoadedMetadata={() => {
+            console.log("Video metadata loaded");
             // Try to play as soon as metadata is loaded
             if (videoRef.current && videoRef.current.paused) {
-              videoRef.current.play().catch(() => {});
+              videoRef.current.play().catch((error) => {
+                console.log("Play failed on metadata loaded:", error);
+              });
             }
           }}
           onError={(e) => {
+            console.error("Video error:", e);
             e.currentTarget.style.display = "none";
           }}
           onLoadedData={() => {
@@ -156,13 +164,12 @@ export default function Home() {
           }}
         >
           <source src="/background-new.mp4" type="video/mp4" />
-          <source src="/background-new.webm" type="video/webm" />
           Your browser does not support the video tag.
         </video>
 
 
-        {/* Fallback gradient background */}
-        <div className="absolute inset-0 -z-10 gradient-green-1"></div>
+        {/* Fallback gradient background - only show if video fails */}
+        <div className="absolute inset-0 z-5 gradient-green-1" style={{ zIndex: -1 }}></div>
 
         {/* Hero Content */}
         <div className="relative z-20 h-full flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 text-center pt-4">
