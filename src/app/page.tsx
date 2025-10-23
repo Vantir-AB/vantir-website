@@ -92,7 +92,15 @@ export default function Home() {
       {/* Hero Section with Video Background */}
       <div className="relative h-screen overflow-hidden">
         {/* Video Background */}
-        <video
+        {isMobile ? (
+          <img
+            src="/background-new-mobile.gif"
+            alt="Background animation"
+            className="absolute inset-0 z-0 w-full h-full object-cover"
+            onLoad={() => setVideoLoaded(true)}
+          />
+        ) : (
+          <video
           ref={(el) => {
             videoRef.current = el;
             // Try to play immediately when video element is available
@@ -171,6 +179,7 @@ export default function Home() {
           <source src="/background-new.webm" type="video/webm" />
           Your browser does not support the video tag.
         </video>
+        )}
 
 
         {/* Fallback gradient background - only show if video fails */}
@@ -178,7 +187,7 @@ export default function Home() {
           className="absolute inset-0 gradient-green-1 transition-opacity duration-500" 
           style={{ 
             zIndex: -1, 
-            opacity: videoLoaded ? 0 : 0.3 
+            opacity: videoLoaded ? 0 : 1 
           }}
         ></div>
 
