@@ -36,7 +36,6 @@ export default function Home() {
     const attemptPlay = () => {
       if (videoRef.current && videoRef.current.paused) {
         videoRef.current.play().catch((error) => {
-          console.log("Autoplay failed:", error);
           // Try again after user interaction
           const handleUserInteraction = () => {
             if (videoRef.current && videoRef.current.paused) {
@@ -98,6 +97,12 @@ export default function Home() {
             alt="Background animation"
             className="absolute inset-0 z-0 w-full h-full object-cover"
             onLoad={() => setVideoLoaded(true)}
+            style={{
+              backgroundImage: 'url(/background-new-mobile-poster.jpg)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
           />
         ) : (
           <video
@@ -117,22 +122,20 @@ export default function Home() {
           disableRemotePlayback
           webkit-playsinline="true"
           x-webkit-airplay="allow"
+          poster="/background-new-poster.jpg"
           className="absolute inset-0 z-0 w-full h-full object-cover"
           style={{
             ['WebkitMediaControlsOverlayPlayButton' as any]: 'display: none !important',
             ['WebkitMediaControlsPlayButton' as any]: 'display: none !important',
           }}
           onLoadStart={() => {
-            console.log("Video loading started");
             // Try to play as soon as loading starts
             if (videoRef.current && videoRef.current.paused) {
               videoRef.current.play().catch((error) => {
-                console.log("Play failed on load start:", error);
               });
             }
           }}
           onPlay={() => {
-            console.log("Video is playing");
             setVideoLoaded(true);
             // Ensure playback rate is set
             if (videoRef.current) {
@@ -147,17 +150,14 @@ export default function Home() {
             }
           }}
           onLoadedMetadata={() => {
-            console.log("Video metadata loaded");
             setVideoLoaded(true);
             // Try to play as soon as metadata is loaded
             if (videoRef.current && videoRef.current.paused) {
               videoRef.current.play().catch((error) => {
-                console.log("Play failed on metadata loaded:", error);
               });
             }
           }}
           onError={(e) => {
-            console.error("Video error:", e);
             e.currentTarget.style.display = "none";
           }}
           onLoadedData={() => {
@@ -175,21 +175,12 @@ export default function Home() {
             }, 100);
           }}
         >
-          <source src="/background-new.mp4" type="video/mp4" />
           <source src="/background-new.webm" type="video/webm" />
           Your browser does not support the video tag.
         </video>
         )}
 
 
-        {/* Fallback gradient background - only show if video fails */}
-        <div 
-          className="absolute inset-0 gradient-green-1 transition-opacity duration-500" 
-          style={{ 
-            zIndex: -1, 
-            opacity: videoLoaded ? 0 : 1 
-          }}
-        ></div>
 
         {/* Hero Content */}
         <div className="relative z-20 h-full flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 text-center pt-4">
