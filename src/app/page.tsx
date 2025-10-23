@@ -7,7 +7,6 @@ import { LightRays } from "@/components/ui/light-rays";
 
 export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
-  const [showPoster, setShowPoster] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handlePlay = () => {
@@ -32,9 +31,9 @@ export default function Home() {
       videoRef.current.playbackRate = 1.0;
     }
 
-    // Try to play video with multiple attempts
+    // Aggressive play attempts with immediate execution
     const attemptPlay = () => {
-      if (videoRef.current) {
+      if (videoRef.current && videoRef.current.paused) {
         videoRef.current.play().catch((error) => {
           console.log("Autoplay failed:", error);
           // Try again after user interaction
@@ -51,15 +50,18 @@ export default function Home() {
       }
     };
 
-    // Try immediately and after delays
-    const timer1 = setTimeout(attemptPlay, 100);
-    const timer2 = setTimeout(attemptPlay, 500);
-    const timer3 = setTimeout(attemptPlay, 1000);
+    // Try immediately and more frequently
+    attemptPlay(); // Immediate attempt
+    const timer1 = setTimeout(attemptPlay, 10);
+    const timer2 = setTimeout(attemptPlay, 50);
+    const timer3 = setTimeout(attemptPlay, 100);
+    const timer4 = setTimeout(attemptPlay, 250);
 
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
       clearTimeout(timer3);
+      clearTimeout(timer4);
     };
   }, []);
 
@@ -69,20 +71,41 @@ export default function Home() {
       <div className="relative h-screen overflow-hidden">
         {/* Video Background */}
         <video
-          ref={videoRef}
+          ref={(el) => {
+            videoRef.current = el;
+            // Try to play immediately when video element is available
+            if (el && el.paused) {
+              setTimeout(() => el.play().catch(() => {}), 0);
+            }
+          }}
           autoPlay
           muted
           loop
           playsInline
-          preload="auto"
-          poster="/vantir-poster.jpg"
+          preload="metadata"
           disablePictureInPicture
           disableRemotePlayback
           className="absolute inset-0 z-0 w-full h-full object-cover"
-          onLoadStart={() => {}}
+          onLoadStart={() => {
+            // Try to play as soon as loading starts
+            if (videoRef.current && videoRef.current.paused) {
+              videoRef.current.play().catch(() => {});
+            }
+          }}
+          onPlay={() => {
+            // Ensure playback rate is set
+            if (videoRef.current) {
+              videoRef.current.playbackRate = 1.0;
+            }
+          }}
           onCanPlay={() => {
-            setShowPoster(false);
-            // Try to play when video is ready
+            // Try to play immediately when video is ready
+            if (videoRef.current && videoRef.current.paused) {
+              videoRef.current.play().catch(() => {});
+            }
+          }}
+          onLoadedMetadata={() => {
+            // Try to play as soon as metadata is loaded
             if (videoRef.current && videoRef.current.paused) {
               videoRef.current.play().catch(() => {});
             }
@@ -91,15 +114,7 @@ export default function Home() {
             e.currentTarget.style.display = "none";
           }}
           onLoadedData={() => {
-            setShowPoster(false);
             // Ensure normal playback
-            if (videoRef.current) {
-              videoRef.current.playbackRate = 1.0;
-            }
-          }}
-          onPlay={() => {
-            setShowPoster(false);
-            // Ensure playback rate is set
             if (videoRef.current) {
               videoRef.current.playbackRate = 1.0;
             }
@@ -113,19 +128,11 @@ export default function Home() {
             }, 100);
           }}
         >
-          <source src="/vantir webm.webm" type="video/webm" />
+          <source src="/background-new.mp4" type="video/mp4" />
+          <source src="/background-new.webm" type="video/webm" />
           Your browser does not support the video tag.
         </video>
 
-        {/* Poster overlay while video is loading or unavailable */}
-        {showPoster && (
-          <img
-            src="/vantir-poster.jpg"
-            alt="Vantir background poster"
-            className="absolute inset-0 z-10 w-full h-full object-cover pointer-events-none select-none"
-            draggable={false}
-          />
-        )}
 
         {/* Fallback gradient background */}
         <div className="absolute inset-0 -z-10 gradient-green-1"></div>
