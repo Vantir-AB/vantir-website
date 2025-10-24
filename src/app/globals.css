@@ -101,6 +101,7 @@ body {
 /* Prevent white flashes on mobile */
 html {
   background-color: var(--color-dark-green);
+  scroll-behavior: smooth;
 }
 
 /* Ensure all sections have proper backgrounds */

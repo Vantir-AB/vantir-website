@@ -72,33 +72,27 @@ export default function Header() {
                 marginRight: "40px",
               }}
             >
-              <button
-                className="hover:text-white transition-colors px-4 text-button cursor-pointer bg-transparent border-none"
+              <a
+                href="/#services"
+                className="hover:text-white transition-colors px-4 text-button cursor-pointer"
                 style={{ color: "var(--color-mint)" }}
-                onClick={() => {
-                  window.location.href = '#services';
-                }}
               >
                 Consulting
-              </button>
-              <button
-                className="hover:text-white transition-colors px-4 text-button cursor-pointer bg-transparent border-none"
+              </a>
+              <a
+                href="/#services"
+                className="hover:text-white transition-colors px-4 text-button cursor-pointer"
                 style={{ color: "var(--color-mint)" }}
-                onClick={() => {
-                  window.location.href = '#services';
-                }}
               >
                 Technical Due Diligence
-              </button>
-              <button
-                className="hover:text-white transition-colors px-4 text-button cursor-pointer bg-transparent border-none"
+              </a>
+              <a
+                href="/#services"
+                className="hover:text-white transition-colors px-4 text-button cursor-pointer"
                 style={{ color: "var(--color-mint)" }}
-                onClick={() => {
-                  window.location.href = '#services';
-                }}
               >
                 Ventures
-              </button>
+              </a>
               <button
                 className="hover:text-white transition-colors px-4 text-button cursor-pointer bg-transparent border-none"
                 style={{ color: "var(--color-mint)" }}
@@ -129,7 +123,7 @@ export default function Header() {
       {/* Sticky Navigation - Right side only */}
       <div 
         className={`fixed top-0 right-0 z-50 transition-opacity duration-500 ease-in-out p-4 sm:p-6 md:p-8 ${
-          showNavbar ? 'opacity-100' : 'opacity-0'
+          showNavbar ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >
         <div className="flex items-center gap-4">
@@ -145,21 +139,21 @@ export default function Header() {
               }}
             >
               <a
-                href="#"
+                href="/#services"
                 className="hover:text-white transition-colors px-4 text-button"
                 style={{ color: "var(--color-mint)" }}
               >
                 Consulting
               </a>
               <a
-                href="#"
+                href="/#services"
                 className="hover:text-white transition-colors px-4 text-button"
                 style={{ color: "var(--color-mint)" }}
               >
                 Technical Due Diligence
               </a>
               <a
-                href="#"
+                href="/#services"
                 className="hover:text-white transition-colors px-4 text-button"
                 style={{ color: "var(--color-mint)" }}
               >
