@@ -1,11 +1,14 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
   const [showNavbar, setShowNavbar] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const router = useRouter();
 
   // Navbar scroll behavior
   useEffect(() => {
@@ -39,23 +42,25 @@ export default function Header() {
   return (
     <>
       {/* Header */}
-      <header className="absolute top-0 left-0 right-0 z-20 p-4 sm:p-6 md:p-8">
+      <header className="fixed top-0 left-0 right-0 z-50 p-4 sm:p-6 md:p-8" style={{ pointerEvents: 'auto' }}>
         <div className="flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center">
-            <Image
-              src="/logo-white.png"
-              alt="Vantir Logo"
-              width={199}
-              height={38}
-              priority
-              draggable={false}
-              className="w-40 sm:w-44 md:w-48 lg:w-52 h-auto object-contain"
-            />
+            <a href="/" onClick={() => console.log('Logo clicked - should go to home')}>
+              <Image
+                src="/logo-white.png"
+                alt="Vantir Logo"
+                width={199}
+                height={38}
+                priority
+                draggable={false}
+                className="w-40 sm:w-44 md:w-48 lg:w-52 h-auto object-contain"
+              />
+            </a>
           </div>
 
           {/* Navigation - Centered */}
-          <nav className="hidden md:flex items-center absolute left-1/2 -translate-x-1/2">
+          <nav className="hidden md:flex items-center absolute left-1/2 -translate-x-1/2 z-50" style={{ pointerEvents: 'auto' }}>
             <div
               className="flex items-center px-6 py-3 rounded-lg"
               style={{
@@ -63,36 +68,46 @@ export default function Header() {
                   "linear-gradient(90deg, color-mix(in srgb, var(--color-emerald) 70%, transparent) 0%, color-mix(in srgb, var(--color-dark-green) 70%, transparent) 95%)",
                 border: "1px solid color-mix(in srgb, var(--color-mint) 40%, transparent)",
                 boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
+                paddingRight: "60px",
+                marginRight: "40px",
               }}
             >
-              <a
-                href="#"
-                className="hover:text-white transition-colors px-4 text-button"
+              <button
+                className="hover:text-white transition-colors px-4 text-button cursor-pointer bg-transparent border-none"
                 style={{ color: "var(--color-mint)" }}
+                onClick={() => {
+                  window.location.href = '#services';
+                }}
               >
                 Consulting
-              </a>
-              <a
-                href="#"
-                className="hover:text-white transition-colors px-4 text-button"
+              </button>
+              <button
+                className="hover:text-white transition-colors px-4 text-button cursor-pointer bg-transparent border-none"
                 style={{ color: "var(--color-mint)" }}
+                onClick={() => {
+                  window.location.href = '#services';
+                }}
               >
                 Technical Due Diligence
-              </a>
-              <a
-                href="#"
-                className="hover:text-white transition-colors px-4 text-button"
+              </button>
+              <button
+                className="hover:text-white transition-colors px-4 text-button cursor-pointer bg-transparent border-none"
                 style={{ color: "var(--color-mint)" }}
+                onClick={() => {
+                  window.location.href = '#services';
+                }}
               >
                 Ventures
-              </a>
-              <a
-                href="/careers"
-                className="hover:text-white transition-colors px-4 text-button"
+              </button>
+              <button
+                className="hover:text-white transition-colors px-4 text-button cursor-pointer bg-transparent border-none"
                 style={{ color: "var(--color-mint)" }}
+                onClick={() => {
+                  window.location.href = '/careers';
+                }}
               >
                 Careers
-              </a>
+              </button>
             </div>
           </nav>
 
@@ -152,8 +167,12 @@ export default function Header() {
               </a>
               <a
                 href="/careers"
-                className="hover:text-white transition-colors px-4 text-button"
+                className="hover:text-white transition-colors px-4 text-button cursor-pointer"
                 style={{ color: "var(--color-mint)" }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  router.push('/careers');
+                }}
               >
                 Careers
               </a>

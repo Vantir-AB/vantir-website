@@ -44,11 +44,7 @@ export default function Home() {
             if (videoRef.current && videoRef.current.paused) {
               videoRef.current.play().catch(() => {});
             }
-            document.removeEventListener("click", handleUserInteraction);
-            document.removeEventListener("touchstart", handleUserInteraction);
           };
-          document.addEventListener("click", handleUserInteraction);
-          document.addEventListener("touchstart", handleUserInteraction);
         });
       }
     };
@@ -62,18 +58,7 @@ export default function Home() {
     const timer5 = setTimeout(attemptPlay, 500);
     const timer6 = setTimeout(attemptPlay, 1000);
 
-    // Add global event listeners for user interaction
-    const handleUserInteraction = () => {
-      if (videoRef.current && videoRef.current.paused) {
-        videoRef.current.play().catch(() => {});
-      }
-    };
-
-    // Listen for any user interaction to trigger video play
-    document.addEventListener('click', handleUserInteraction);
-    document.addEventListener('touchstart', handleUserInteraction);
-    document.addEventListener('keydown', handleUserInteraction);
-    document.addEventListener('scroll', handleUserInteraction);
+    // Remove all global event listeners that interfere with navigation
 
     return () => {
       clearTimeout(timer1);
@@ -82,10 +67,6 @@ export default function Home() {
       clearTimeout(timer4);
       clearTimeout(timer5);
       clearTimeout(timer6);
-      document.removeEventListener('click', handleUserInteraction);
-      document.removeEventListener('touchstart', handleUserInteraction);
-      document.removeEventListener('keydown', handleUserInteraction);
-      document.removeEventListener('scroll', handleUserInteraction);
     };
   }, []);
 
@@ -250,7 +231,7 @@ export default function Home() {
 
 
         {/* Hero Content */}
-        <div className="relative z-20 h-full flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 text-center pt-4">
+        <div className="hero-section relative z-0 h-full flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 text-center pt-32" style={{ pointerEvents: 'none', marginTop: '200px' }}>
           <h1
             className="text-5xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-6 tracking-tight select-none"
             style={{
@@ -316,6 +297,7 @@ export default function Home() {
 
       {/* Our Services Section */}
       <section
+        id="services"
         className="relative py-16 sm:py-24"
         style={{ backgroundColor: "var(--color-dark-green)" }}
       >
