@@ -147,9 +147,9 @@ export default function Careers() {
                 style={{ background: "linear-gradient(to right, transparent, var(--color-mint), transparent)" }}
               ></div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 min-h-76">
+              <div className="text-left grid grid-cols-1 md:grid-cols-2 gap-8 min-h-76">
                 {benefits.map((benefit, index) => (
-                  <div key={index} className={`${index % 2 === 1 ? 'text-right' : 'text-left'} relative h-full`}>
+                  <div key={index} className="relative h-full">
                     <h3
                       className="text-2xl font-bold mb-4 absolute top-4 left-0 right-0"
                       style={{ color: "var(--color-almost-white)" }}
