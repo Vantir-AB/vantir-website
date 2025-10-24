@@ -145,35 +145,32 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen">
-      {/* Loading State */}
-      {!imagesLoaded && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center" style={{ backgroundColor: "var(--color-dark-green)" }}>
-          <div className="text-center">
-            <div className="w-16 h-16 border-4 border-var(--color-mint) border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <p style={{ color: "var(--color-mint)" }}>Loading...</p>
-          </div>
-        </div>
-      )}
-
+    <div className="min-h-screen" style={{ backgroundColor: "var(--color-dark-green)" }}>
       {/* Hero Section with Video Background */}
-      <div className="relative h-screen overflow-hidden">
+      <div className="relative h-screen overflow-hidden" style={{ backgroundColor: "var(--color-dark-green)" }}>
         {/* Video Background */}
         {isMobile ? (
-          <Image
-            src="/background-new-mobile-small.gif"
-            alt="Background animation"
-            fill
-            priority
-            className="absolute inset-0 z-0 object-cover"
-            onLoad={() => setVideoLoaded(true)}
-            style={{
-              backgroundImage: 'url(/background-new-mobile-poster.jpg)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
-            }}
-          />
+          <>
+            {/* Fallback background */}
+            <div 
+              className="absolute inset-0 z-0"
+              style={{
+                backgroundImage: 'url(/background-new-mobile-poster.jpg)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                backgroundColor: 'var(--color-dark-green)'
+              }}
+            />
+            <Image
+              src="/background-new-mobile-small.gif"
+              alt="Background animation"
+              fill
+              priority
+              className="absolute inset-0 z-10 object-cover"
+              onLoad={() => setVideoLoaded(true)}
+            />
+          </>
         ) : (
           <video
           ref={(el) => {

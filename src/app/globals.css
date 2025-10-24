@@ -66,10 +66,20 @@
 }
 
 body {
-  background: transparent;
+  background: var(--color-dark-green);
   color: var(--color-black);
   font-family: var(--font-manrope), system-ui, sans-serif;
   font-weight: var(--font-body);
+}
+
+/* Prevent white flashes on mobile */
+html {
+  background-color: var(--color-dark-green);
+}
+
+/* Ensure all sections have proper backgrounds */
+section {
+  background-color: inherit;
 }
 
 /* Mobile performance optimizations */
