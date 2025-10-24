@@ -42,7 +42,7 @@ export default function Header() {
   return (
     <>
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 p-4 sm:p-6 md:p-8" style={{ pointerEvents: 'auto' }}>
+      <header className="absolute top-0 left-0 right-0 z-50 p-4 sm:p-6 md:p-8" style={{ pointerEvents: 'auto' }}>
         <div className="flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center">
@@ -117,7 +117,7 @@ export default function Header() {
             style={{
               background: "linear-gradient(90deg, #184A4B 0%, #042222 95%)",
               color: "#BDFFE1",
-              border: "2px solid #BDFFE1",
+              border: "1px solid #BDFFE1",
               boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
             }}
           >

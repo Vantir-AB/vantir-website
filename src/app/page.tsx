@@ -231,7 +231,7 @@ export default function Home() {
 
 
         {/* Hero Content */}
-        <div className="hero-section relative z-0 h-full flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 text-center pt-32" style={{ pointerEvents: 'none', marginTop: '200px' }}>
+        <div className="hero-section relative z-0 h-full flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 text-center pt-32" style={{ pointerEvents: 'none' }}>
           <h1
             className="text-5xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-6 tracking-tight select-none"
             style={{
