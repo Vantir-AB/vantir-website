@@ -252,7 +252,7 @@ export default function Home() {
         {/* Hero Content */}
         <div className="relative z-20 h-full flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 text-center pt-4">
           <h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-6 tracking-tight select-none"
+            className="text-5xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-6 tracking-tight select-none"
             style={{
               background: "linear-gradient(90deg, #F8F8F9 0%, #BDFFE1 100%)",
               WebkitBackgroundClip: "text",
@@ -291,7 +291,7 @@ export default function Home() {
             >
               <p className="text-heading leading-[110%]">
                 We help companies build, evaluate, and scale technology with
-                clarity and precision — from AI, cloud, and data consulting to
+                clarity and precision. From AI, cloud, and data consulting to
                 rigorous technical due diligence, ensuring they remain
                 competitive in today’s AI-driven world.
               </p>
@@ -335,7 +335,7 @@ export default function Home() {
           </div>
 
           {/* Services Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-sm sm:max-w-none mx-auto sm:mx-0">
             <ServiceCard
               iconSrc="/homepage/2circle.svg"
               iconAlt="Consulting"
@@ -368,10 +368,11 @@ export default function Home() {
             className="leading-[110%] font-[var(--font-heading)] text-[1.25rem] sm:text-[1.5rem] md:text-[2rem] lg:text-[2.5rem]"
             style={{ color: "var(--color-black)" }}
           >
-            We help companies master cloud,
-            <br /> data & AI – and become self-
+             Master cloud, data & AI and
+            <br />    
+            become self-sufficient.
             <br />
-            sufficient in the process.{" "}
+            in the process.{" "}
           </p>
         </div>
       </section>
@@ -383,26 +384,19 @@ export default function Home() {
       >
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
           <div className="max-w-4xl">
-            <div
-              className="mb-6"
+            <h2
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-left leading-tight mb-6"
               style={{
                 background: "var(--gradient-light-reversed)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
-                display: "inline-block",
+                color: "var(--color-almost-white)", // fallback for browsers that don't support background-clip
+                fontWeight: "var(--font-display)",
               }}
             >
-              <h2
-                className="text-4xl md:text-5xl lg:text-7xl font-bold text-left leading-tight"
-                style={{
-                  color: "transparent",
-                  fontWeight: "var(--font-display)",
-                }}
-              >
-                Let's build something lasting together.
-              </h2>
-            </div>
+              Let's build something lasting together.
+            </h2>
             <p
               className="text-subtitle mb-8 text-left"
               style={{ color: "var(--color-almost-white)" }}
@@ -464,8 +458,9 @@ export default function Home() {
             >
               We are looking for talented people to join us.
             </p>
-            <button
-              className="relative px-12 py-4 rounded-lg transition-colors font-['Manrope'] text-button mt-2 overflow-hidden"
+            <a
+              href="/careers"
+              className="relative inline-block px-12 py-4 rounded-lg transition-colors font-['Manrope'] text-button mt-2 overflow-hidden"
               style={{
                 background: "var(--gradient-light-reversed)",
                 color: "var(--color-dark-green)",
@@ -477,8 +472,8 @@ export default function Home() {
                 duration={8}
                 borderWidth={2}
               />
-              Get in touch
-            </button>
+              Join the team
+            </a>
           </div>
         </div>
       </section>

@@ -87,7 +87,7 @@ export default function Header() {
                 Ventures
               </a>
               <a
-                href="#"
+                href="/careers"
                 className="hover:text-white transition-colors px-4 text-button"
                 style={{ color: "var(--color-mint)" }}
               >
@@ -151,7 +151,7 @@ export default function Header() {
                 Ventures
               </a>
               <a
-                href="#"
+                href="/careers"
                 className="hover:text-white transition-colors px-4 text-button"
                 style={{ color: "var(--color-mint)" }}
               >
