@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 import ServiceCard from "@/components/ServiceCard";
 import { ShineBorder } from "@/components/ui/shine-border";
 import { LightRays } from "@/components/ui/light-rays";
@@ -8,6 +9,8 @@ import { LightRays } from "@/components/ui/light-rays";
 export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handlePlay = () => {
@@ -86,16 +89,83 @@ export default function Home() {
     };
   }, []);
 
+  // Handle scroll performance optimization
+  useEffect(() => {
+    let scrollTimeout: NodeJS.Timeout;
+    
+    const handleScroll = () => {
+      setIsScrolling(true);
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        setIsScrolling(false);
+      }, 150);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(scrollTimeout);
+    };
+  }, []);
+
+  // Preload critical images
+  useEffect(() => {
+    const preloadImages = () => {
+      const imageUrls = [
+        '/background-new-mobile-poster.jpg',
+        '/background-new-poster.jpg',
+        '/homepage/2circle.svg',
+        '/homepage/3circle.svg',
+        '/homepage/bigsmallcircle.svg',
+        '/image copy.png'
+      ];
+
+      let loadedCount = 0;
+      const totalImages = imageUrls.length;
+
+      imageUrls.forEach(url => {
+        const img = new window.Image();
+        img.onload = () => {
+          loadedCount++;
+          if (loadedCount === totalImages) {
+            setImagesLoaded(true);
+          }
+        };
+        img.onerror = () => {
+          loadedCount++;
+          if (loadedCount === totalImages) {
+            setImagesLoaded(true);
+          }
+        };
+        img.src = url;
+      });
+    };
+
+    preloadImages();
+  }, []);
+
   return (
     <div className="min-h-screen">
+      {/* Loading State */}
+      {!imagesLoaded && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center" style={{ backgroundColor: "var(--color-dark-green)" }}>
+          <div className="text-center">
+            <div className="w-16 h-16 border-4 border-var(--color-mint) border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p style={{ color: "var(--color-mint)" }}>Loading...</p>
+          </div>
+        </div>
+      )}
+
       {/* Hero Section with Video Background */}
       <div className="relative h-screen overflow-hidden">
         {/* Video Background */}
         {isMobile ? (
-          <img
+          <Image
             src="/background-new-mobile-small.gif"
             alt="Background animation"
-            className="absolute inset-0 z-0 w-full h-full object-cover"
+            fill
+            priority
+            className="absolute inset-0 z-0 object-cover"
             onLoad={() => setVideoLoaded(true)}
             style={{
               backgroundImage: 'url(/background-new-mobile-poster.jpg)',
