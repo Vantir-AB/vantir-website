@@ -1,13 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { ShineBorder } from "@/components/ui/shine-border";
 import { LightRays } from "@/components/ui/light-rays";
 import { AuroraText } from "@/components/ui/aurora-text";
 
-export default function Careers() {
+function CareersContent() {
   const [isMobile, setIsMobile] = useState(false);
   const searchParams = useSearchParams();
   const isSubmitted = searchParams?.get("submitted") === "true";
@@ -426,5 +426,13 @@ export default function Careers() {
         </div>
       </section>
     </div>
+  );
+}
+
+export default function Careers() {
+  return (
+    <Suspense fallback={null}>
+      <CareersContent />
+    </Suspense>
   );
 }
