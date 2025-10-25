@@ -422,7 +422,6 @@ export default function Careers() {
             <input type="email" name="email" />
             <input type="file" name="resume" />
             <textarea name="message" />
-            <input type="checkbox" name="consent" />
           </form>
         </div>
       </section>
