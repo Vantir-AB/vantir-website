@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { ShineBorder } from "@/components/ui/shine-border";
 import { LightRays } from "@/components/ui/light-rays";
@@ -8,6 +9,8 @@ import { AuroraText } from "@/components/ui/aurora-text";
 
 export default function Careers() {
   const [isMobile, setIsMobile] = useState(false);
+  const searchParams = useSearchParams();
+  const isSubmitted = searchParams?.get("submitted") === "true";
 
   useEffect(() => {
     const checkMobile = () => {
@@ -96,6 +99,24 @@ export default function Careers() {
             >
               Build the future with us. We're looking for exceptional talent to help shape the next generation of technology solutions.
             </p>
+            <div className="mt-8">
+              <a
+                href="#application-form"
+                className="relative inline-block px-12 py-4 rounded-lg transition-colors font-['Manrope'] text-button overflow-hidden"
+                style={{
+                  background: "var(--gradient-light-reversed)",
+                  color: "var(--color-dark-green)",
+                }}
+              >
+                <ShineBorder
+                  baseColor="var(--color-viridian)"
+                  shineColor={["var(--color-viridian)", "var(--color-mint)"]}
+                  duration={6}
+                  borderWidth={2}
+                />
+                Apply Now
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -244,7 +265,7 @@ export default function Careers() {
               Ready to Join Us?
             </h2>
             <a
-              href="/careers"
+              href="#application-form"
               className="relative inline-block px-12 py-4 rounded-lg transition-colors font-['Manrope'] text-button mt-2 overflow-hidden"
               style={{
                 background: "var(--gradient-light-reversed)",
@@ -257,9 +278,152 @@ export default function Careers() {
                 duration={5}
                 borderWidth={3}
               />
-              Send Your Resume
+               Apply Now
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* Application Form Section */}
+      <section
+        id="application-form"
+        className="py-16 sm:py-24"
+        style={{ backgroundColor: "var(--color-almost-white)" }}
+      >
+        <div className="w-full max-w-3xl mx-auto px-4 sm:px-6 md:px-8">
+          <h2
+            className="text-3xl md:text-4xl font-bold mb-6 text-left"
+            style={{ color: "var(--color-dark-green)", fontWeight: "var(--font-display)" }}
+          >
+            Send your resume
+          </h2>
+
+          {isSubmitted && (
+            <div
+              className="mb-6 rounded-lg p-4"
+              style={{ backgroundColor: "#E6FFF4", color: "#064E3B", border: "1px solid #34D399" }}
+            >
+              Thank you! Your application has been submitted.
+            </div>
+          )}
+
+          <form
+            name="job-application"
+            method="POST"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+            action="/careers?submitted=true#application-form"
+            encType="multipart/form-data"
+            className="space-y-6 rounded-xl p-6"
+            style={{ backgroundColor: "var(--color-dark-green)" }}
+          >
+            {/* Honeypot */}
+            <input type="hidden" name="form-name" value="job-application" />
+            <p className="hidden">
+              <label>
+                Don’t fill this out: <input name="bot-field" />
+              </label>
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label htmlFor="name" className="block mb-2 text-sm" style={{ color: "var(--color-almost-white)" }}>Full name</label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  required
+                  className="w-full rounded-md px-4 py-3"
+                  style={{ backgroundColor: "#0B2B2B", color: "var(--color-almost-white)", border: "1px solid rgba(189,255,225,0.3)" }}
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="block mb-2 text-sm" style={{ color: "var(--color-almost-white)" }}>Email</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  className="w-full rounded-md px-4 py-3"
+                  style={{ backgroundColor: "#0B2B2B", color: "var(--color-almost-white)", border: "1px solid rgba(189,255,225,0.3)" }}
+                />
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="resume" className="block mb-2 text-sm" style={{ color: "var(--color-almost-white)" }}>Resume</label>
+              <div className="relative">
+                <input
+                  id="resume"
+                  name="resume"
+                  type="file"
+                  required
+                  accept=".pdf,.doc,.docx,.txt"
+                  className="sr-only"
+                  onChange={(e) => {
+                    const fileName = (e.target as HTMLInputElement).files?.[0]?.name || "No file chosen";
+                    const label = document.getElementById("resume-filename");
+                    if (label) label.textContent = fileName;
+                  }}
+                />
+                <label
+                  htmlFor="resume"
+                  className="flex items-center justify-between w-full rounded-md px-4 py-3 cursor-pointer"
+                  style={{ backgroundColor: "#0B2B2B", color: "var(--color-almost-white)", border: "1px solid rgba(189,255,225,0.3)" }}
+                >
+                  <span id="resume-filename">Choose file</span>
+                  <span className="ml-4 inline-flex items-center rounded-md px-3 py-1 text-sm"
+                        style={{ backgroundColor: "var(--color-mint)", color: "#042222" }}>Browse</span>
+                </label>
+                <p className="mt-2 text-xs" style={{ color: "rgba(189,255,225,0.8)" }}>Accepted: PDF, DOC, DOCX, TXT</p>
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="message" className="block mb-2 text-sm" style={{ color: "var(--color-almost-white)" }}>Message</label>
+              <textarea
+                id="message"
+                name="message"
+                rows={5}
+                className="w-full rounded-md px-4 py-3"
+                style={{ backgroundColor: "#0B2B2B", color: "var(--color-almost-white)", border: "1px solid rgba(189,255,225,0.3)" }}
+                placeholder="Briefly tell us about yourself and why you want to join Vantir."
+              />
+            </div>
+
+            <div className="space-y-3">
+              <p className="text-xs" style={{ color: "rgba(189,255,225,0.8)" }}>
+                We retain applications for up to 12 months unless you request deletion sooner. You can withdraw your
+                consent at any time by contacting applications@vantir.se.
+              </p>
+            </div>
+
+            <button
+              type="submit"
+              className="relative inline-block px-10 py-3 rounded-lg transition-colors font-['Manrope'] text-button overflow-hidden"
+              style={{
+                background: "var(--gradient-light-reversed)",
+                color: "var(--color-dark-green)",
+              }}
+            >
+              <ShineBorder
+                baseColor="var(--color-viridian)"
+                shineColor={["var(--color-viridian)", "var(--color-mint)"]}
+                duration={8}
+                borderWidth={2}
+              />
+              Submit Application
+            </button>
+          </form>
+
+          {/* Hidden form for Netlify build-time detection */}
+          <form name="job-application" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+            <input type="text" name="name" />
+            <input type="email" name="email" />
+            <input type="file" name="resume" />
+            <textarea name="message" />
+            <input type="checkbox" name="consent" />
+          </form>
         </div>
       </section>
     </div>
